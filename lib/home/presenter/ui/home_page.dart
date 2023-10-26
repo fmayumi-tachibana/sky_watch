@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:sky_watch/video_selector/presenter/ui/video_selector_page.dart';
 import 'package:sky_watch/weather/presenter/ui/weather_page.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -17,7 +14,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('SkyWatch'),
       ),
       body: Center(
@@ -29,20 +25,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const VideoSelectorPage()),
+                    builder: (context) => const VideoSelectorPage(),
+                  ),
                 );
               },
               child: const Text('Upload Video'),
             ),
             ElevatedButton(
               onPressed: () async {
-                LocationPermission permission;
-                permission = await Geolocator.requestPermission();
-
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const WeatherPage()),
+                    builder: (context) => const WeatherPage(),
+                  ),
                 );
               },
               child: const Text('View Weather'),

@@ -1,5 +1,5 @@
-class FetchWeatherRequest {
-  FetchWeatherRequest(
+class FetchForecastRequest {
+  FetchForecastRequest(
     this.latitude,
     this.longitude,
   );

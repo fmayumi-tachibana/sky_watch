@@ -14,7 +14,7 @@ class FetchLocationWeatherDataSourceImpl
       String apiKey = 'b85af4d0f3f27871650a29722dc40edc';
 
       Request post = Request(
-        '$weatherApiUrl?lat=${request.altitude}&lon=${request.longitude}&appid=$apiKey&units=metric',
+        '$weatherApiUrl?lat=${request.latitude}&lon=${request.longitude}&appid=$apiKey&units=imperial',
       );
       var weatherData = await post();
 

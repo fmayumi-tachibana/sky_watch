@@ -2,13 +2,13 @@ import 'package:sky_watch/weather/domain/entities/request/fetch_weather_request.
 
 class FetchWeatherRequestModel extends FetchWeatherRequest {
   FetchWeatherRequestModel(
-    super.altitude,
+    super.latitude,
     super.longitude,
   );
 
   factory FetchWeatherRequestModel.copy(FetchWeatherRequest request) {
     return FetchWeatherRequestModel(
-      request.altitude,
+      request.latitude,
       request.longitude,
     );
   }

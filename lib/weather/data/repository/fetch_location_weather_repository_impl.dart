@@ -16,7 +16,7 @@ class FetchLocationWeatherRepositoryImpl
   Future<Weather?> call(Position position) async {
     final FetchWeatherRequestModel request = FetchWeatherRequestModel.copy(
       FetchWeatherRequest(
-        position.altitude,
+        position.latitude,
         position.longitude,
       ),
     );

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:intl/intl.dart';
+import 'package:sky_watch/core/extensions/date_time_extension.dart';
+import 'package:sky_watch/forecast/presenter/ui/forecast_page.dart';
 import 'package:sky_watch/weather/presenter/bloc/weather_bloc.dart';
 import 'package:sky_watch/weather/presenter/bloc/weather_state.dart';
 
@@ -14,6 +17,8 @@ class WeatherPage extends StatefulWidget {
 class _WeatherPageState extends State<WeatherPage> {
   final WeatherBloc _weatherBloc = GetIt.I<WeatherBloc>();
 
+  final double _fontSize = 15;
+
   @override
   void initState() {
     _weatherBloc.fetch();
@@ -25,8 +30,6 @@ class _WeatherPageState extends State<WeatherPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('WeatherPage'),
-        backgroundColor: Colors.green,
-        actions: const [],
       ),
       body: BlocBuilder<WeatherBloc, WeatherState>(
           bloc: _weatherBloc,
@@ -37,47 +40,74 @@ class _WeatherPageState extends State<WeatherPage> {
               );
             }
             if (state is WeatherResultState) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      'Temperature: ${state.weather.temperature}°  ',
-                      style: const TextStyle(
-                        fontFamily: 'Spartan MB',
-                        fontSize: 40.0,
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        DateTime.now().weekdayName() ?? '',
+                        style: TextStyle(
+                          fontSize: _fontSize,
+                        ),
                       ),
-                    ),
-                    Text(
-                      'condition: ${state.weather.condition}  ',
-                      style: const TextStyle(
-                        fontFamily: 'Spartan MB',
-                        fontSize: 40.0,
+                      Text(
+                        '${DateFormat('HH:mm').format(DateTime.now())} h',
+                        style: TextStyle(
+                          fontSize: _fontSize,
+                        ),
                       ),
-                    ),
-                    Text(
-                      'humidity: ${state.weather.humidity}  ',
-                      style: const TextStyle(
-                        fontFamily: 'Spartan MB',
-                        fontSize: 40.0,
+                      Text(
+                        'temperature: ${state.weather.temperature} °F',
+                        style: TextStyle(
+                          fontFamily: 'Spartan MB',
+                          fontSize: _fontSize,
+                        ),
                       ),
-                    ),
-                    Text(
-                      'Country: ${state.weather.country}  ',
-                      style: const TextStyle(
-                        fontFamily: 'Spartan MB',
-                        fontSize: 40.0,
+                      Text(
+                        'condition: ${state.weather.condition}',
+                        style: TextStyle(
+                          fontFamily: 'Spartan MB',
+                          fontSize: _fontSize,
+                        ),
                       ),
-                    ),
-                    Text(
-                      'City: ${state.weather.city}  ',
-                      style: const TextStyle(
-                        fontFamily: 'Spartan MB',
-                        fontSize: 40.0,
+                      Text(
+                        'humidity: ${state.weather.humidity}',
+                        style: TextStyle(
+                          fontFamily: 'Spartan MB',
+                          fontSize: _fontSize,
+                        ),
                       ),
-                    ),
-                  ],
+                      Text(
+                        'Country: ${state.weather.country}',
+                        style: TextStyle(
+                          fontFamily: 'Spartan MB',
+                          fontSize: _fontSize,
+                        ),
+                      ),
+                      Text(
+                        'City: ${state.weather.city}',
+                        style: TextStyle(
+                          fontFamily: 'Spartan MB',
+                          fontSize: _fontSize,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ForecastPage(),
+                            ),
+                          );
+                        },
+                        child: const Text('Forecasts'),
+                      )
+                    ],
+                  ),
                 ),
               );
             }

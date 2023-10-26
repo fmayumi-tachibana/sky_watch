@@ -21,14 +21,15 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp( //fazer versão para ios
-      title: 'Flutter Demo',
+  Widget build(BuildContext context) {//falta detalhe da previsão do tempo, testar em devices, comentar codigo e escrever teste unitario de widget
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'SkyWatch',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(),
     );
   }
 }

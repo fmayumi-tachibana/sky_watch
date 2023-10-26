@@ -19,8 +19,6 @@ class _VideoSelectorPageState extends State<VideoSelectorPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Gallery and Camera Access'),
-        backgroundColor: Colors.green,
-        actions: const [],
       ),
       body: Builder(
         builder: (BuildContext context) {
@@ -29,8 +27,6 @@ class _VideoSelectorPageState extends State<VideoSelectorPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.green)),
                   child: const Text('Select video from Gallery and Camera'),
                   onPressed: () {
                     _showPicker(context: context);
@@ -46,14 +42,6 @@ class _VideoSelectorPageState extends State<VideoSelectorPage> {
                       ? const Center(child: Text('Sorry nothing selected!!'))
                       : Center(child: Text(galleryFile!.path)),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 18.0),
-                  child: Text(
-                    "GFG",
-                    textScaleFactor: 3,
-                    style: TextStyle(color: Colors.green),
-                  ),
-                )
               ],
             ),
           );

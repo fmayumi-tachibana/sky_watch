@@ -39,6 +39,7 @@ dependencies:
   geolocator: ^10.1.0
   get_it: ^7.6.4
   image_picker: ^1.0.4
+  intl: ^0.18.1
   video_player: ^2.7.2
   weather: ^3.1.1
 
